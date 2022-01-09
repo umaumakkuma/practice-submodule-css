@@ -1,0 +1,149 @@
+@charset "utf-8";
+
+img {
+  vertical-align: bottom;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  &-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 50%;
+    background-color: #52cfe6;
+
+    &.open {
+      animation-name: open;
+      animation-duration: .5s;
+      animation-timing-function: cubic-bezier(1,0,1,0);
+      animation-fill-mode: forwards;
+    }
+  }
+
+  &-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 50%;
+    background-color: #52cfe6;
+
+    &.open {
+      animation-name: open;
+      animation-duration: .5s;
+      animation-timing-function: cubic-bezier(1,0,1,0);
+      animation-fill-mode: forwards;
+    }
+  }
+
+  &__icon {
+    position: relative;
+    z-index: 2;
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    border-width: 0.5em;
+    border-style: solid;
+    border-color: #fff #fff #fff transparent;
+    border-radius: 50%;
+    animation-name: loader-circle;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    &.fade-out {
+      animation-name: fade-out;
+      animation-duration: .5s;
+      animation-timing-function: linear;
+      animation-iteration-count: initial;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  &__complete-text {
+    opacity: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: #fff;
+    font-size: 50px;
+
+    &.fade-in-out {
+      animation-name: fade-in-out;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+    }
+  }
+}
+
+/* ローディングアイコン */
+@keyframes loader-circle {
+  0%   {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+/* フェードアウト */
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* フェードイン＆アウト */
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ローディングスクリーン */
+@keyframes open {
+  0% {
+    height: 50%;
+  }
+
+  100% {
+    height: 0;
+  }
+}
+
+/* utility */
+.d-none {
+  display: none;
+}
